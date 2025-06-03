@@ -178,6 +178,7 @@ const getMe = async (req, res) => {
         // Get user ID from JWT
         const token = req.cookies.token;
         const decoded = jwt.verify(token, process.env.JWT_SECRETE);
+        console.log(token, decoded);
 
         // Fetch user without password
         const user = await UserModel.findById(decoded.userId).select('-password');
