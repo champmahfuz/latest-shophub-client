@@ -7,14 +7,17 @@ import cookieparser from 'cookie-parser'
 
 
 dotenv.config()
+const env = process.env.NODE_ENV
+console.log("Env", env);
+
+
+
 const PORT = process.env.PORT || 5000
 const app = express()
 
 
 DbCon()
-app.use(express.json()); // For parsing application/json
-app.use(cookieparser())
-app.use(express.urlencoded({ extended: true })); // For form data
+
 const corsOptions = {
     origin: 'http://localhost:5173', // Your frontend URL
     credentials: true, // Allow credentials (cookies)
@@ -22,6 +25,12 @@ const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 };
 app.use(cors(corsOptions));
+
+app.use(express.json()); // For parsing application/json
+app.use(cookieparser())
+app.use(express.urlencoded({ extended: true })); // For form data
+
+console.log(process.env);
 
 app.use('/api/auth', AuthRoutes)
 

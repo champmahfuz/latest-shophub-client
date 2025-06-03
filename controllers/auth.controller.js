@@ -36,7 +36,8 @@
 
 import UserModel from "../models/user.model.js";
 import bcryptjs from 'bcryptjs';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
+const isProd = process.env.NODE_ENV === 'production';
 
 const register = async (req, res) => {
     try {
@@ -123,6 +124,9 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
+
+    const env = process.env.NODE_ENV
+    console.log("Env", env);
     try {
         const { username, password } = req.body
 
@@ -142,7 +146,7 @@ const login = async (req, res) => {
 
         res.cookie('token', token, {
             httpOnly: true,
-            secure: true,
+            secure: isProd,
             maxAge: 3600000,
             sameSite: "lax",
             path: "/"
