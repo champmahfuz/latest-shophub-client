@@ -19,7 +19,7 @@ const app = express()
 DbCon()
 
 const corsOptions = {
-    origin: 'http://localhost:5173', // Your frontend URL
+    origin: ['http://localhost:5173', 'https://gregarious-khapse-77eb25.netlify.app'], // Your frontend URL
     credentials: true, // Allow credentials (cookies)
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Remember-Me'], // Add your custom header
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']

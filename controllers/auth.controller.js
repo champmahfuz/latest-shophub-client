@@ -148,7 +148,7 @@ const login = async (req, res) => {
             httpOnly: true,
             secure: isProd,
             maxAge: 3600000,
-            sameSite: "lax",
+            sameSite: isProd ? "none" : "lax",
             path: "/"
 
 
